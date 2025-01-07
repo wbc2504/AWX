@@ -1,0 +1,11 @@
+---
+apiVersion: awx.ansible.com/v1beta1
+kind: AWX
+metadata:
+  name: awx-demo
+spec:
+  service_type: nodeport
+  projects_persistence: true
+  projects_storage_class: ""
+ # projects_volume_capacity: 10Gi
+  projects_existing_claim: local-host-playbooks-claim
