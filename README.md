@@ -11,7 +11,7 @@ cp -i /etc/rancher/k3s/k3s.yaml $HOME/.kube/config
 
 chown $(id -u):$(id -g) $HOME/.kube/config
 
-2- Clonar el repositorio de awx-operator.
+2- Clonar el repositorio de awx-operator
 
 git clone https://github.com/ansible/awx-operator.git
 
@@ -21,11 +21,11 @@ kubectl create namespace awx
 
 4- Aplicar el YAML que contiene la configuracion del pv y el pvc para que la ruta de los proyectos dentro del contenedor /var/lib/awx/projects se comparta con el servidor anfitrion.
 
-kubectl apply -f volumenes.yaml.
+kubectl apply -f volumenes.yaml
 
 5- Construir los archivos kustomization.yaml y awx-demo.yaml para realizar la instalacion, primero se debe aplicar el kustomization.yaml y cuando este levante los contenedores editarlo para agregar la linea "- awx-demo.yml" 
 
-kubectl apply -k . 
+kubectl apply -k .
 
 6- Para loguearse en la interfaz grafica utilizar el usuario admin y la contraseña se obtiene con el siguiente comando:
 
