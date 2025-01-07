@@ -11,9 +11,15 @@ cp -i /etc/rancher/k3s/k3s.yaml $HOME/.kube/config
 
 chown $(id -u):$(id -g) $HOME/.kube/config
 
-2- Clonar el repositorio de awx-operator
+2- Clonar el repositorio de awx-operator y asignar el tag de la version que se instalará de AWX-OPERATOR
 
 git clone https://github.com/ansible/awx-operator.git
+
+cd awx-operator
+
+git tag
+
+git checkout tags/2.19.1
 
 3- Crear el namespace para awx:
 
