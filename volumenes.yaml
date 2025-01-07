@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: local-host-playbooks
+  namespace: awx
+spec:
+  capacity:
+    storage: 10G
+  local:
+    path: /opt/playbooks
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: local-storage
+  volumeMode: Filesystem
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: node-role.kubernetes.io/master
+              operator: In
+              values:
+                - 'true'
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: local-host-playbooks-claim
+  namespace: awx
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10G
+  volumeName: local-host-playbooks
+  storageClassName: local-storage
+  volumeMode: Filesystem
