@@ -4,8 +4,11 @@ Instalacion de awx con awx-operator sobre Kubernetes K3S
 1- Instalación de kubernetes con K3s. 
 
 curl -sfL https://get.k3s.io | sh -s - --data-dir /opt/k3s --disable traefik
+
 mkdir -p $HOME/.kube
+
 cp -i /etc/rancher/k3s/k3s.yaml $HOME/.kube/config
+
 chown $(id -u):$(id -g) $HOME/.kube/config
 
 2- Clonar el repositorio de awx-operator.
