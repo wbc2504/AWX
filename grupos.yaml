@@ -1,0 +1,16 @@
+- name: Crear grupos en un inventario de AWX
+  hosts: localhost
+  tasks:
+    - name: Crear grupos en el inventario
+      awx.awx.group:
+        controller_host: "http://172.22.30.145:31659/"
+        controller_username: "admin"
+        controller_password: "JgeaQo43KNRXnnunQv1utbltWLUTMFbc"
+        inventory: "inventario"  # Nombre del inventario en el que crear los grupos
+        name: "{{ item.name }}"  # Nombre del grupo
+        description: "{{ item.description }}"  # Descripción del grupo
+        state: present  # Asegura que el grupo exista
+      loop:
+        - { name: "Sismilenio", description: "Primer grupo" }
+        - { name: "Sisclinet", description: "Segundo grupo" }
+        - { name: "Retail", description: "Tercer grupo" }
