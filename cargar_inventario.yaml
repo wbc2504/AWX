@@ -1,0 +1,31 @@
+- name: Crear inventarios y asignar variables en AWX
+  hosts: localhost
+  tasks:
+    - name: Crear inventarios en AWX
+      awx.awx.inventory:
+        controller_host: "http://172.22.30.145:31659/"  # Cambiar por la URL de tu instancia AWX
+        controller_username: "admin"                   # Cambiar por tu usuario
+        controller_password: "JgeaQo43KNRXnnunQv1utbltWLUTMFbc"          # Cambiar por tu contraseña
+        name: "{{ item.name }}"                        # Nombre del inventario
+        description: "{{ item.description }}"          # Descripción del inventario
+        organization: "Default"                        # Organización en AWX
+        variables: "{{ item.variables | to_nice_json }}"  # Variables en formato JSON
+        state: present                                 # Asegura que el inventario exista
+      loop:
+        - name: "Inventario2"
+          description: "Este es el primer inventario"
+          variables:
+            ansible_user: "usuario1"
+            ansible_password: "password1"
+            ansible_connection: "winrm"
+            ansible_winrm_transport: ntlm
+            ansible_winrm_server_cert_validation: ignore
+        - name: "Inventario2"
+          description: "inventario3"
+          variables:
+            ansible_user: servient\userwb
+            ansible_password: Consultor0321*
+            ansible_port: 5985
+            ansible_connection: winrm
+            ansible_winrm_transport: ntlm
+            ansible_winrm_server_cert_validation: ignore
