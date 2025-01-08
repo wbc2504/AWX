@@ -1,0 +1,22 @@
+---
+- name: Add host to Ansible Automation Platform Inventory
+  hosts: localhost
+  vars:
+   #inventario:
+    host_name: serv-sismi03
+   #host_description:
+    your_username: "admin"
+    your_password: "JgeaQo43KNRXnnunQv1utbltWLUTMFbc"
+    ansible_url: "http://172.22.30.145:31659/"
+
+  tasks:
+   - name: Add host
+     awx.awx.host:
+        controller_host: "{{ ansible_url }}"
+        controller_username: "{{ your_username }}"
+        controller_password: "{{ your_password }}"
+        name: "{{ host_name }}"
+        description: Local Host test
+        inventory: inventario
+       # site: Default
+        state: present
