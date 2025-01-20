@@ -36,3 +36,5 @@ kubectl apply -k .
 6- Para loguearse en la interfaz grafica utilizar el usuario admin y la contraseña se obtiene con el siguiente comando:
 
 kubectl get secret awx-demo-admin-password -n awx -o jsonpath="{.data.password}" | base64 --decode ; echo
+
+Documentacion oficial: https://ansible.readthedocs.io/projects/awx-operator/en/latest/installation/basic-install.html
