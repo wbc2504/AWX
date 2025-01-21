@@ -4,7 +4,7 @@ kind: AWX
 metadata:
   name: awx-demo
 spec:
-  service_type: nodeport
+  service_type: clusterip
   projects_persistence: true
   projects_storage_class: ""
  # projects_volume_capacity: 10Gi
