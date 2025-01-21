@@ -46,6 +46,9 @@ kubectl apply -f volumenes.yaml
 
 kubectl apply -k .
 
+![image](https://github.com/user-attachments/assets/2be94a2b-ec73-4c92-ad14-e1fd145355f9)
+
+
 6- Para loguearse en la interfaz grafica utilizar el usuario admin y la contraseña se obtiene con el siguiente comando:
 
 kubectl get secret awx-demo-admin-password -n awx -o jsonpath="{.data.password}" | base64 --decode ; echo
