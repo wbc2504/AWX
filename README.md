@@ -9,7 +9,7 @@ Deshabilitar swap del servidor:
 
 swapoff -a
 
-entrar al archivo /etc/fstab y comentar la siguiente linea
+entrar al archivo /etc/fstab y comentar la siguiente linea:
 
 ![image](https://github.com/user-attachments/assets/a693e126-bc52-4cf6-9ff2-6e5fcc273f12)
 
