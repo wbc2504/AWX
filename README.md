@@ -1,6 +1,19 @@
 # AWX
 Instalacion de awx con awx-operator sobre Kubernetes K3S
 
+Deshabilitar el firewall:
+
+systemctl disable --now firewalld.service
+
+Deshabilitar swap del servidor:
+
+swapoff -a
+
+entrar al archivo /etc/fstab y comentar la siguiente linea
+
+![image](https://github.com/user-attachments/assets/a693e126-bc52-4cf6-9ff2-6e5fcc273f12)
+
+
 1- Instalación de kubernetes con K3s. 
 
 curl -sfL https://get.k3s.io | sh -s - --data-dir /opt/k3s --disable traefik
