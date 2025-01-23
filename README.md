@@ -42,30 +42,42 @@ kubectl create namespace awx
 
 mkdir /opt/playbooks
 
-4- Aplicar el YAML que contiene la configuracion del pv y el pvc para que la ruta de los proyectos dentro del contenedor /var/lib/awx/projects se comparta con el servidor anfitrion.
+5- Aplicar el YAML que contiene la configuracion del pv y el pvc para que la ruta de los proyectos dentro del contenedor /var/lib/awx/projects se comparta con el servidor anfitrion.
 
 kubectl apply -f volumenes.yaml
 
-5- Construir los archivos kustomization.yaml y awx-demo.yaml para realizar la instalacion, primero se debe aplicar el kustomization.yaml y cuando este levante los contenedores editarlo para agregar la linea "- awx-demo.yml" 
+6- Construir los archivos kustomization.yaml y awx-demo.yaml para realizar la instalacion, primero se debe aplicar el kustomization.yaml y cuando este levante los contenedores editarlo para agregar la linea "- awx-demo.yml" 
 
 kubectl apply -k .
 
 ![image](https://github.com/user-attachments/assets/2be94a2b-ec73-4c92-ad14-e1fd145355f9)
 
-6- Para loguearse en la interfaz grafica utilizar el usuario admin y la contraseña se obtiene con el siguiente comando:
+7- Instalacion del ingress para cargar por HTTPS con certificado y DNS:
 
-kubectl get secret awx-demo-admin-password -n awx -o jsonpath="{.data.password}" | base64 --decode ; echo
-
-8- Instalacion del ingress para cargar por HTTPS con certificado y DNS:
-
-8.1 crear secreto con el wildcard.crt y wildcard.key
+7.1 crear secreto con el wildcard.crt y wildcard.key
 
 kubectl create secret tls tls-secret --cert=wildcard.crt --key=wildcard.key -n awx
 
-8.2 Aplicar todos los manifiestos presentes en la carpeta balanceador
+7.2 Aplicar todos los manifiestos presentes en la carpeta balanceador
 
 kubectl apply -f .
 
-8.3 
+7.3 Aplicar el manifiesto nginx-ingress.yml
 
-Documentacion oficial: https://ansible.readthedocs.io/projects/awx-operator/en/latest/installation/basic-install.html
+kubectl apply -f nginx-ingress.yml
+
+Nota es importante que el ingress pertenezca al mismo namespace que el servicio relacionado en el ingress.
+
+8- Agregar el DNS awx-ansible.servientrega.com apuntando a la ip del servidor donde se despliego AWX o quemar en el archivo host de la maquina windows que posee el navegador:
+
+192.168.100.3 awx-ansible.servientrega.com
+
+9- Loquearse con el usuario admin y la contraseña se obtiene ejecutando el comando:
+
+kubectl get secret awx-demo-admin-password -n awx -o jsonpath="{.data.password}" | base64 --decode ; echo
+
+Documentacion oficial: 
+- https://ansible.readthedocs.io/projects/awx-operator/en/latest/installation/basic-install.html
+- https://docs.nginx.com/nginx-ingress-controller/installation/installing-nic/installation-with-manifests/
+
+
