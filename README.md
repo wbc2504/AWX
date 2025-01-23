@@ -38,6 +38,10 @@ git checkout tags/2.19.1
 
 kubectl create namespace awx
 
+4- Crear la carpeta playbooks dentro del opt
+
+mkdir /opt/playbooks
+
 4- Aplicar el YAML que contiene la configuracion del pv y el pvc para que la ruta de los proyectos dentro del contenedor /var/lib/awx/projects se comparta con el servidor anfitrion.
 
 kubectl apply -f volumenes.yaml
@@ -48,9 +52,20 @@ kubectl apply -k .
 
 ![image](https://github.com/user-attachments/assets/2be94a2b-ec73-4c92-ad14-e1fd145355f9)
 
-
 6- Para loguearse en la interfaz grafica utilizar el usuario admin y la contraseña se obtiene con el siguiente comando:
 
 kubectl get secret awx-demo-admin-password -n awx -o jsonpath="{.data.password}" | base64 --decode ; echo
+
+8- Instalacion del ingress para cargar por HTTPS con certificado y DNS:
+
+8.1 crear secreto con el wildcard.crt y wildcard.key
+
+kubectl create secret tls tls-secret --cert=wildcard.crt --key=wildcard.key -n awx
+
+8.2 Aplicar todos los manifiestos presentes en la carpeta balanceador
+
+kubectl apply -f .
+
+8.3 
 
 Documentacion oficial: https://ansible.readthedocs.io/projects/awx-operator/en/latest/installation/basic-install.html
