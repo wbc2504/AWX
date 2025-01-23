@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+  namespace: awx
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - awx-ansible.servientrega.com
+    secretName: tls-secret
+  rules:
+  - host: awx-ansible.servientrega.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: awx-demo-service
+            port:
+              number: 80
