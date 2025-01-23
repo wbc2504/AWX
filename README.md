@@ -46,9 +46,11 @@ mkdir /opt/playbooks
 
 kubectl apply -f volumenes.yaml
 
-6- Construir los archivos kustomization.yaml y awx-demo.yaml para realizar la instalacion, primero se debe aplicar el kustomization.yaml y cuando este levante los contenedores editarlo para agregar la linea "- awx-demo.yml" 
+6- Construir los archivos kustomization.yaml y awx-demo.yaml para realizar la instalacion, primero se debe aplicar el kustomization.yaml y cuando este levante los 2 contenedores del operador editarlo para descomentar la linea "- awx-demo.yml" y volver a aplicar:
 
 kubectl apply -k .
+
+Nota: kustomization.yaml y awx-demo.yaml deben estar en la misma ruta
 
 ![image](https://github.com/user-attachments/assets/2be94a2b-ec73-4c92-ad14-e1fd145355f9)
 
