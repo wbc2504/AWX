@@ -68,7 +68,7 @@ kubectl apply -f .
 
 kubectl apply -f nginx-ingress.yml
 
-Nota es importante que el ingress pertenezca al mismo namespace que el servicio relacionado en el ingress.
+Nota: es importante que el ingress pertenezca al mismo namespace que el servicio relacionado en  este mismo ingress.
 
 8- Agregar el DNS awx-ansible.servientrega.com apuntando a la ip del servidor donde se despliego AWX o quemar en el archivo host de la maquina windows que posee el navegador:
 
