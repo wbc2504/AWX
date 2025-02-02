@@ -63,6 +63,7 @@ kubectl create secret tls tls-secret --cert=wildcard.crt --key=wildcard.key -n a
 7.2 Aplicar todos los manifiestos presentes en la carpeta balanceador
 
 kubectl apply -f .
+kubectl apply -f https://raw.githubusercontent.com/nginx/kubernetes-ingress/v4.0.0/deploy/crds.yaml
 
 7.3 Aplicar el manifiesto nginx-ingress.yml
 
