@@ -7,7 +7,7 @@ spec:
   capacity:
     storage: 10G
   local:
-    path: /opt/playbooks
+    path: /opt/capa_media_playbooks
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
