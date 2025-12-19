@@ -5,7 +5,7 @@ metadata:
   namespace: awx
 spec:
   capacity:
-    storage: 10G
+    storage: 5G
   local:
     path: /opt/capa_media_playbooks
   accessModes:
@@ -34,7 +34,7 @@ spec:
     - ReadWriteMany
   resources:
     requests:
-      storage: 10G
+      storage: 5G
   volumeName: local-host-playbooks
   storageClassName: local-storage
   volumeMode: Filesystem
