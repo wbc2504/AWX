@@ -1,4 +1,5 @@
-# AWX
+# <img width="100" height="100" alt="image" src="https://github.com/user-attachments/assets/8c72c832-e1b7-4567-8150-614c7a69e4c7" /> AWX
+
 Instalacion de awx con awx-operator sobre Kubernetes K3S
 
 Deshabilitar el firewall:
