@@ -30,29 +30,33 @@ cp -i /etc/rancher/k3s/k3s.yaml $HOME/.kube/config
 chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
-#### 2. Clonar el repositorio de awx-operator y asignar el tag de la version que se instalará de AWX-OPERATOR
+#### 3. Clonar el repositorio de awx-operator y asignar el tag de la version que se instalará de AWX-OPERATOR
 ```
 git clone https://github.com/ansible/awx-operator.git
 cd awx-operator
 git tag
 git checkout tags/version
 ```
-3- Crear el namespace para awx:
 
+#### 4. Crear el namespace para awx:
+```
 kubectl create namespace awx
+```
 
-4- Crear la carpeta playbooks dentro del opt
-
+#### 5. Crear la carpeta playbooks dentro del opt
+```
 mkdir /opt/playbooks
+```
 
-5- Aplicar el YAML que contiene la configuracion del pv y el pvc para que la ruta de los proyectos dentro del contenedor /var/lib/awx/projects se comparta con el servidor anfitrion.
-
+#### 6. Aplicar el YAML que contiene la configuracion del pv y el pvc para que la ruta de los proyectos dentro del contenedor /var/lib/awx/projects se comparta con el servidor anfitrion.
+```
 kubectl apply -f volumenes.yaml
+```
 
-6- Construir los archivos kustomization.yaml y awx-demo.yaml para realizar la instalacion, primero se debe aplicar el kustomization.yaml y cuando este levante los 2 contenedores del operador editarlo para descomentar la linea "- awx-demo.yml" y volver a aplicar:
-
+#### 7. Construir los archivos kustomization.yaml y awx-demo.yaml para realizar la instalacion, primero se debe aplicar el kustomization.yaml y cuando este levante los 2 contenedores del operador editarlo para descomentar la linea "- awx-demo.yml" y volver a aplicar:
+```
 kubectl apply -k .
-
+```
 Nota: kustomization.yaml y awx-demo.yaml deben estar en la misma ruta
 
 ![image](https://github.com/user-attachments/assets/2be94a2b-ec73-4c92-ad14-e1fd145355f9)
