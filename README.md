@@ -1,4 +1,4 @@
-# <img width="100" height="100" alt="image" src="https://github.com/user-attachments/assets/8c72c832-e1b7-4567-8150-614c7a69e4c7" /> AWX
+# <img width="70" height="40" alt="image" src="https://github.com/user-attachments/assets/5a96d25e-157e-439c-8887-7696d8fbd23a" /> Instalacion de AWX
 
 Instalacion de awx con awx-operator sobre Kubernetes K3S
 
