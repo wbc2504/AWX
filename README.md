@@ -2,39 +2,41 @@
 
 Instalacion de awx con awx-operator sobre Kubernetes K3S
 
-Deshabilitar el firewall:
+## Preparacion del sistema operativo e instalacion de kubernetes K3S
 
+#### 1. Deshabilitar el firewall:
+```
 systemctl disable --now firewalld.service
-
-Deshabilitar swap del servidor:
-
+````
+#### 2. Deshabilitar swap del servidor:
+```
 swapoff -a
-
-entrar al archivo /etc/fstab y comentar la siguiente linea:
+```
+##### 3. Entrar al archivo /etc/fstab y comentar la siguiente linea:
 
 ![image](https://github.com/user-attachments/assets/a693e126-bc52-4cf6-9ff2-6e5fcc273f12)
 
 
-1- Instalación de kubernetes con K3s. 
+#### Instalación de kubernetes con K3s. 
 
+#### 1. Descarga de los paquetes de kubernetes. 
+```
 curl -sfL https://get.k3s.io | sh -s - --data-dir /opt/k3s --disable traefik
-
+```
+#### 2. Permisos de kubectl sobre el usuario de instalación
+```
 mkdir -p $HOME/.kube
-
 cp -i /etc/rancher/k3s/k3s.yaml $HOME/.kube/config
-
 chown $(id -u):$(id -g) $HOME/.kube/config
+```
 
-2- Clonar el repositorio de awx-operator y asignar el tag de la version que se instalará de AWX-OPERATOR
-
+#### 2. Clonar el repositorio de awx-operator y asignar el tag de la version que se instalará de AWX-OPERATOR
+```
 git clone https://github.com/ansible/awx-operator.git
-
 cd awx-operator
-
 git tag
-
-git checkout tags/2.19.1
-
+git checkout tags/version
+```
 3- Crear el namespace para awx:
 
 kubectl create namespace awx
